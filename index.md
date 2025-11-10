@@ -15,7 +15,8 @@ This Project is using the Artix-7 product. The lanuage used to program the board
 
 <img src="https://raw.githubusercontent.com/melgineer/fpga-vga-verilog/main/docs/assets/images/VGAPrjSum.png">
 
-<img scr="https://github.com/si570/FPGA-VGA-Verilog2/blob/main/Code1.png">
+<img src="https://github.com/si570/FPGA-VGA-Verilog2/tree/main/docs/assets/images">
+
 ### **Template Code**
 Outline the structure and design of the Verilog code templates you were given. What do they do? Include reference to how a VGA interface works. Guideline: 2/3 short paragraphs, consider including screenshot(s).
 
