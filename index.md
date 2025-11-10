@@ -22,6 +22,7 @@ Outline the structure and design of the Verilog code templates you were given. W
 
 ### **Simulation**
 Explain the simulation process. Reference any important details, include a well-selected screenshot of the simulation. Guideline: 1/2 short paragraphs.
+<img src="https://github.com/si570/FPGA-VGA-Verilog2/blob/main/docs/assets/images/Code2.png">
 ### **Synthesis**
 Describe the synthesis and implementation processes. Consider including 1/2 useful screenshot(s). Guideline: 1/2 short paragraphs.
 ### **Demonstration**
