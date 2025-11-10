@@ -14,6 +14,7 @@ My VGA project started at 16:54 on 20/11/25.
 This Project is using the Artix-7 product. The lanuage used to program the board in verilog that allow us the change the colors of the pixal via VGA.
 
 <img src="https://raw.githubusercontent.com/melgineer/fpga-vga-verilog/main/docs/assets/images/VGAPrjSum.png">
+
 <img scr="https://github.com/si570/FPGA-VGA-Verilog2/blob/main/Code1.png">
 ### **Template Code**
 Outline the structure and design of the Verilog code templates you were given. What do they do? Include reference to how a VGA interface works. Guideline: 2/3 short paragraphs, consider including screenshot(s).
