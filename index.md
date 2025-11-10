@@ -5,17 +5,18 @@ tags: fpga vga verilog
 categories: demo
 ---
 
-Add a short welcome message or introduction here. Aim to get the viewer interested in what follows! Guideline: 1 or 2 sentences. 
+Hi! Did you ever wonder how are LCD screens work, displaying millions and Billions of frame per nano seconds, its your luck day because on this blog page I will share my VGA Project. 
 
-I am adding a test sentence here at 13:24 on 03/12/24.
+My VGA project started at 16:54 on 20/11/25.
 
 ## **Template VGA Design**
 ### **Project Set-Up**
-Summarise the project set-up and design flow. Include a screenshot of your own set-up, for example see the image of my Project Summary window below. Guideline 1 short paragraph.
+This Project is using the Artix-7 product. The lanuage used to program the board in verilog that allow us the change the colors of the pixal via VGA.
 
 <img src="https://raw.githubusercontent.com/melgineer/fpga-vga-verilog/main/docs/assets/images/VGAPrjSum.png">
 ### **Template Code**
 Outline the structure and design of the Verilog code templates you were given. What do they do? Include reference to how a VGA interface works. Guideline: 2/3 short paragraphs, consider including screenshot(s).
+<img scr="https://github.com/si570/FPGA-VGA-Verilog2/blob/main/Code1.png"
 ### **Simulation**
 Explain the simulation process. Reference any important details, include a well-selected screenshot of the simulation. Guideline: 1/2 short paragraphs.
 ### **Synthesis**
