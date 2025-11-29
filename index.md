@@ -43,6 +43,8 @@ The simulation confirmed:
 
 <img src="https://github.com/si570/FPGA-VGA-Verilog2/blob/main/docs/assets/images/Code2.png">
 
+<img src="https://github.com/si570/FPGA-VGA-Verilog2/blob/main/docs/assets/images/scarymaze.png">
+
 ### **Synthesis**
 Vivado synthesis successfully mapped the VGA drivers onto the Artix-7 logic.  
 No critical warnings were produced, and the timing report passed with positive slack.
