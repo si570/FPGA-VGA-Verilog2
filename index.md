@@ -1,58 +1,85 @@
 ---
 layout: home
-title: FPGA VGA Driver Project
-tags: fpga vga verilog
+title: FPGA VGA Driver Project – Scary Maze
+tags: fpga vga verilog game
 categories: demo
 ---
 
-Hi! Did you ever wonder how are LCD screens work, displaying millions and Billions of frame per nano seconds, its your luck day because on this blog page I will share my VGA Project. 
+Hi! Have you ever wondered how LCD screens manage to display millions of pixels every second?  
+Today you're in luck — this page explains my FPGA VGA project, where I recreated the classic **Scary Maze Game** using **Verilog** and an **Artix-7** FPGA.
 
-My VGA project started at 16:54 on 20/11/25.
+My VGA project started at **16:54 on 20/11/25**.
+
+---
 
 ## **Template VGA Design**
+
 ### **Project Set-Up**
-This Project is using the Artix-7 product. The lanuage used to program the board in verilog that allow us the change the colors of the pixal via VGA.
+This project uses the **Artix-7 Basys3 FPGA**.  
+All graphics are programmed in **Verilog**, and the VGA port sends out pixel colors according to horizontal and vertical counters.
 
 <img src="https://raw.githubusercontent.com/melgineer/fpga-vga-verilog/main/docs/assets/images/VGAPrjSum.png">
 
 <img src="https://github.com/si570/FPGA-VGA-Verilog2/blob/main/docs/assets/images/Code1.png">
 
 ### **Template Code**
-Outline the structure and design of the Verilog code templates you were given. What do they do? Include reference to how a VGA interface works. Guideline: 2/3 short paragraphs, consider including screenshot(s).
+The template provided the core VGA timing module.  
+It generates:
+- **hsync** and **vsync** pulses  
+- A **pixel clock**  
+- Horizontal (`h_count`) and vertical (`v_count`) counters  
+- A **video_on** signal, so pixels are only drawn inside the visible region
+
+This works because VGA requires *precise timing*:  
+640×480 resolution at 60 Hz uses a 25.175 MHz pixel clock, with front porch, sync pulse, and back porch intervals.  
+The template code handled all of this, allowing me to focus on adding custom graphics.
 
 ### **Simulation**
-Explain the simulation process. Reference any important details, include a well-selected screenshot of the simulation. Guideline: 1/2 short paragraphs.
+I simulated the VGA timing using Vivado’s waveform viewer.  
+The simulation confirmed:
+- Correct hsync/vsync timing  
+- Counters reset at the correct cycle  
+- `video_on` activates within 640×480 only
+
 <img src="https://github.com/si570/FPGA-VGA-Verilog2/blob/main/docs/assets/images/Code2.png">
+
 ### **Synthesis**
-Describe the synthesis and implementation processes. Consider including 1/2 useful screenshot(s). Guideline: 1/2 short paragraphs.
+Vivado synthesis successfully mapped the VGA drivers onto the Artix-7 logic.  
+No critical warnings were produced, and the timing report passed with positive slack.
+
 ### **Demonstration**
-Perhaps add a picture of your demo. Guideline: 1/2 sentences.
+Here you can add a photo of the VGA display running the template pattern.
 
-## **My VGA Design Edit**
-Introduce your own design idea. Consider how complex/achievabble this might be or otherwise. Reference any research you do online (use hyperlinks).
-### **Code Adaptation**
-Briefly show how you changed the template code to display a different image. Demonstrate your understanding. Guideline: 1-2 short paragraphs.
-### **Simulation**
-Show how you simulated your own design. Are there any things to note? Demonstrate your understanding. Add a screenshot. Guideline: 1-2 short paragraphs.
-### **Synthesis**
-Describe the synthesis & implementation outputs for your design, are there any differences to that of the original design? Guideline 1-2 short paragraphs.
-### **Demonstration**
-If you get your own design working on the Basys3 board, take a picture! Guideline: 1-2 sentences.
+---
 
-## **More Markdown Basics**
-This is a paragraph. Add an empty line to start a new paragraph.
+# **My VGA Design Edit — Scary Maze Game**
 
-Font can be emphasised as *Italic* or **Bold**.
+For my custom design, I recreated a simplified **Scary Maze Game**.  
+The idea:  
+- The player moves a small **cursor square** through a narrow **maze path**  
+- If they touch the blue walls → **jump scare appears**  
+- The scary face is stored in a **ROM pixel image file**
 
-Code can be highlighted by using `backticks`.
+I researched VGA image ROM techniques and pixel storage from sites like:  
+- https://projectf.io  
+- https://fpga4fun.com  
+- https://nandland.com
 
-Hyperlinks look like this: [GitHub Help](https://help.github.com/).
+---
 
-A bullet list can be rendered as follows:
-- vectors
-- algorithms
-- iterators
+## **Code Adaptation**
 
-Images can be added by uploading them to the repository in a /docs/assets/images folder, and then rendering using HTML via githubusercontent.com as shown in the example below.
+I modified the template to include:
 
-<img src="https://raw.githubusercontent.com/melgineer/fpga-vga-verilog/main/docs/assets/images/VGAPrjSrcs.png">
+### 1. **Maze drawing logic**  
+I used coordinate checks:
+
+```verilog
+// Maze walls (blue)
+if ((x < 100) || (x > 540) || (y < 50) || (y > 430))
+    rgb <= 12'h00F;   // blue
+else if (hit_wall)
+    rgb <= scary_pixel;  // scary face ROM
+else
+    rgb <= 12'hFFF;  // white path
+
